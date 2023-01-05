@@ -7,12 +7,11 @@
 #import <UIKit/UIKit.h>
 #import <AVKit/AVKit.h>
 #import <JWPlayerKit/JWPlayerKit-swift.h>
-#import <GoogleCast/GoogleCast.h>
 #import "RNJWPlayerViewController.h"
 
 @class RNJWPlayerViewController;
 
-@interface RNJWPlayerView : UIView  <JWPlayerDelegate, JWPlayerStateDelegate, JWAdDelegate, JWCastDelegate, JWAVDelegate, JWPlayerViewDelegate, JWPlayerViewControllerDelegate, JWDRMContentKeyDataSource, AVPictureInPictureControllerDelegate>
+@interface RNJWPlayerView : UIView  <JWPlayerDelegate, JWPlayerStateDelegate, JWAdDelegate, JWAVDelegate, JWPlayerViewDelegate, JWPlayerViewControllerDelegate, JWDRMContentKeyDataSource, AVPictureInPictureControllerDelegate>
 
 @property(nonatomic, strong)RNJWPlayerViewController* playerViewController;
 @property(nonatomic, strong)JWPlayerView *playerView;
@@ -31,11 +30,6 @@
 @property(nonatomic) NSString *fairplayCertUrl;
 @property(nonatomic) NSString *processSpcUrl;
 @property(nonatomic) NSString *contentUUID;
-
-/* casting objects */
-@property(nonatomic, strong)JWCastController *castController;
-@property(nonatomic)BOOL isCasting;
-@property(nonatomic, strong)NSArray<JWCastingDevice *> *availableDevices;
 
 /* player state events */
 @property(nonatomic, copy)RCTBubblingEventBlock onBuffer;
@@ -92,13 +86,6 @@
 @property(nonatomic, copy)RCTBubblingEventBlock onCasting;
 @property(nonatomic, copy)RCTBubblingEventBlock onCastingEnded;
 @property(nonatomic, copy)RCTBubblingEventBlock onCastingFailed;
-
-/* casting methods */
-- (void)setUpCastController;
-- (void)presentCastDialog;
-- (GCKCastState)castState;
-- (JWCastingDevice*)connectedDevice;
-- (NSArray <JWCastingDevice *>*)availableDevices;
 
 /* Methods */
 -(void)setLicense:(id)license;

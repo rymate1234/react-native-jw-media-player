@@ -13,14 +13,13 @@
 
 #import <UIKit/UIKit.h>
 #import <AVKit/AVKit.h>
-#import <GoogleCast/GoogleCast.h>
 #import <JWPlayerKit/JWPlayerKit.h>
 #import "JWPlayerKit/JWPlayerObjCViewController.h"
 #import "RNJWPlayerView.h"
 
 @class RNJWPlayerView;
 
-@interface RNJWPlayerViewController : JWPlayerObjCViewController <JWPlayerDelegate, JWPlayerStateDelegate, JWAdDelegate, JWCastDelegate, JWAVDelegate, JWPlayerViewDelegate, JWPlayerViewControllerDelegate, JWDRMContentKeyDataSource, JWTimeEventListener, AVPictureInPictureControllerDelegate>
+@interface RNJWPlayerViewController : JWPlayerObjCViewController <JWPlayerDelegate, JWPlayerStateDelegate, JWAdDelegate, JWAVDelegate, JWPlayerViewDelegate, JWPlayerViewControllerDelegate, JWDRMContentKeyDataSource, JWTimeEventListener, AVPictureInPictureControllerDelegate>
 
 @property(nonatomic, weak)RNJWPlayerView *parentView;
 
