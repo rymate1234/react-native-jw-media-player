@@ -570,7 +570,9 @@
 
 - (void)castController:(JWCastController * _Nonnull)controller castingBeganWithDevice:(JWCastingDevice * _Nonnull)device {
     [super castController:controller castingBeganWithDevice:device];
-    
+    _parentView.castController = controller;
+    NSLog(@"casting began %@", self);
+
     if (_parentView.onCasting) {
         _parentView.onCasting(@{});
     }
@@ -578,7 +580,9 @@
 
 - (void)castController:(JWCastController * _Nonnull)controller castingEndedWithError:(NSError * _Nullable)error {
     [super castController:controller castingEndedWithError:error];
-    
+    _parentView.castController = nil;
+    NSLog(@"casting end %@", self);
+
     if (_parentView.onCastingEnded) {
         _parentView.onCastingEnded(@{@"error": error});
     }
@@ -586,7 +590,9 @@
 
 - (void)castController:(JWCastController * _Nonnull)controller castingFailedWithError:(NSError * _Nonnull)error {
     [super castController:controller castingFailedWithError:error];
-    
+    _parentView.castController = nil;
+    NSLog(@"casting fail %@", self);
+
     if (_parentView.onCastingFailed) {
         _parentView.onCastingFailed(@{@"error": error});
     }
@@ -594,7 +600,9 @@
 
 - (void)castController:(JWCastController * _Nonnull)controller connectedTo:(JWCastingDevice * _Nonnull)device {
     [super castController:controller connectedTo:device];
-    
+    _parentView.castController = controller;
+    NSLog(@"casting connected %@", self);
+
     if (_parentView.onConnectedToCastingDevice) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
             

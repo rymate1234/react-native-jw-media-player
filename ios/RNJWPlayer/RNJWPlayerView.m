@@ -1382,7 +1382,12 @@
 
 - (void)stopCasting
 {
-    return [_castController stopCasting];
+    if (_castController) {
+        NSLog(@"casting stopping!");
+        [_castController stopCasting];
+        [_castController disconnect];
+        _castController.delegate = nil;
+    }
 }
 
 #pragma mark - JWPlayer Cast Delegate
