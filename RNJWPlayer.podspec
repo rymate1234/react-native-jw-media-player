@@ -13,6 +13,12 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/chaimPaneth/react-native-jw-media-player.git", :tag => "v#{s.version}" }
   s.source_files  = "ios/RNJWPlayer/*.{h,m}"
   s.dependency   'JWPlayerKit', '~> 4.9.0'
+
+  s.pod_target_xcconfig = {
+    "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES",
+    "FRAMEWORK_SEARCH_PATHS" => $(inherited) "ios",
+  }
+
   # s.dependency   'google-cast-sdk', '~> 4.7.0'
   s.dependency   'React'
   # s.static_framework = true
