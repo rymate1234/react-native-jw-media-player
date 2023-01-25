@@ -200,6 +200,7 @@ declare module "react-native-jw-media-player" {
     setFullscreen(fullScreen: boolean): void;
     position(): Promise<number>;
     setUpCastController(): void;
+    stopCasting(): void;
     presentCastDialog(): void;
     connectedDevice(): Promise<CastingDevice | null>;
     availableDevices(): Promise<CastingDevice[] | null>;

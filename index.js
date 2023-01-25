@@ -215,6 +215,7 @@ export default class JWPlayer extends Component {
 		setLockScreenControls: PropTypes.func,
 		setFullscreen: PropTypes.func,
 		setUpCastController: PropTypes.func,
+		stopCasting: PropTypes.func,
 		presentCastDialog: PropTypes.func,
 		connectedDevice: PropTypes.func,
 		availableDevices: PropTypes.func,
@@ -415,6 +416,12 @@ export default class JWPlayer extends Component {
 				this.getRNJWPlayerBridgeHandle()
 			);
 	}
+
+	stopCasting() {
+		if (RNJWPlayerManager && Platform.OS === 'ios')
+			RNJWPlayerManager.stopCasting(this.getRNJWPlayerBridgeHandle());
+	}
+
 
 	async connectedDevice() {
 		if (RNJWPlayerManager && Platform.OS === 'ios') {

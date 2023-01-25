@@ -297,6 +297,17 @@ RCT_EXPORT_METHOD(presentCastDialog: (nonnull NSNumber *)reactTag) {
     }];
 }
 
+RCT_EXPORT_METHOD(stopCasting: (nonnull NSNumber *)reactTag) {
+    [self.bridge.uiManager addUIBlock:^(__unused RCTUIManager *uiManager, NSDictionary<NSNumber *, RNJWPlayerView *> *viewRegistry) {
+        RNJWPlayerView *view = viewRegistry[reactTag];
+        if (![view isKindOfClass:[RNJWPlayerView class]] || view.playerView == nil) {
+            RCTLogError(@"Invalid view returned from registry, expecting RNJWPlayerView, got: %@", view);
+        } else {
+            [view stopCasting];
+        }
+    }];
+}
+
 RCT_REMAP_METHOD(connectedDevice,
                  tag:(nonnull NSNumber *)reactTag
                  resolve:(RCTPromiseResolveBlock)resolve
