@@ -626,6 +626,8 @@
 
 - (void)castController:(JWCastController * _Nonnull)controller connectionRecoveredWithDevice:(JWCastingDevice * _Nonnull)device {
     [super castController:controller connectionRecoveredWithDevice:device];
+    _parentView.castController = controller;
+    NSLog(@"casting recovered %@", self);
     
     if (_parentView.onConnectionRecovered) {
         _parentView.onConnectionRecovered(@{});
