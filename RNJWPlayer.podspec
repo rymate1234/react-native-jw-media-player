@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.pod_target_xcconfig = {
     "CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES",
-    "FRAMEWORK_SEARCH_PATHS" => $(inherited) "ios",
+    "FRAMEWORK_SEARCH_PATHS" => ["$(inherited)", "ios/GoogleCast.xcframework"]
   }
 
   # s.dependency   'google-cast-sdk', '~> 4.7.0'
