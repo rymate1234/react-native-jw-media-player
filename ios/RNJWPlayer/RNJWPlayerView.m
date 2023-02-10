@@ -745,9 +745,6 @@
             _playerViewController.interfaceBehavior = JWInterfaceBehaviorHidden;
         }
     }
-
-    //setVisibility(.hidden, for: [.pictureInPictureButton])
-    _playerViewController.setVisiblity(.hidden, for: [.pictureInPictureButton])
 }
 
 #pragma mark - JWPlayer View helpers
