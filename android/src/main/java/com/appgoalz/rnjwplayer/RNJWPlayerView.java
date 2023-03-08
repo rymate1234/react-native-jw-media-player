@@ -836,9 +836,6 @@ public class RNJWPlayerView extends RelativeLayout implements
             mMediaServiceController = new MediaServiceController.Builder((AppCompatActivity) mActivity, mPlayer).build();
             doBindService();
         }
-
-        ListView listView = findViewById(R.id.casting_available_devices);
-        listView.setNestedScrollingEnabled(true);
     }
 
     // Audio Focus
