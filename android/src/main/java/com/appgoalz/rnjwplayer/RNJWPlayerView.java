@@ -541,7 +541,8 @@ public class RNJWPlayerView extends RelativeLayout implements
                     if (trackProp.hasKey("file")) {
                         String file = trackProp.getString("file");
                         String label = trackProp.getString("label");
-                        Caption caption = new Caption.Builder().file(file).label(label).kind(CaptionType.CAPTIONS).isDefault(false).build();
+                        boolean isDefault = trackProp.getBoolean("default");
+                        Caption caption = new Caption.Builder().file(file).label(label).kind(CaptionType.CAPTIONS).isDefault(isDefault).build();
                         tracks.add(caption);
                     }
                 }
@@ -661,24 +662,14 @@ public class RNJWPlayerView extends RelativeLayout implements
         if (prop.hasKey("advertising")) {
             ReadableMap ads = prop.getMap("advertising");
             if (ads != null && ads.hasKey("adSchedule")) {
-                ReadableMap adSchedule = ads.getMap("adSchedule");
-                if (adSchedule.hasKey("tag") && adSchedule.hasKey("offset")) {
-                    String tag = adSchedule.getString("tag");
-                    String offset = adSchedule.getString("offset");
-//            int skipOffset = prop.getInt("skipOffset");
-//            String adTypeStr = prop.getString("adType");
-//            List<String> tags = (List<String>) prop.getArray("tags");
-
-                    AdBreak adBreak = new AdBreak.Builder()
-                            .tag(tag)
-                            .offset(offset)
-//                    .skipOffset(skipOffset)
-//                    .adType(adTypeStr.equals("LINEAR") ? AdType.LINEAR : AdType.NONLINEAR)
-//                    .tag(tags)
-//                    .customParams()
-                            .build();
-
-                    adScheduleList.add(adBreak);
+                ReadableArray adSchedule = ads.getArray("adSchedule");
+                for(int i = 0; i < adSchedule.size(); i++){
+                    ReadableMap adBreakProp = adSchedule.getMap(i);
+                    String offset = adBreakProp.hasKey("offset") ? adBreakProp.getString("offset") : "pre";
+                    if(adBreakProp.hasKey("tag")){
+                        AdBreak adBreak = new AdBreak.Builder().offset(offset).tag(adBreakProp.getString("tag")).build();
+                        adScheduleList.add(adBreak);
+                    }
                 }
 
                 if (ads.hasKey("adClient") &&
