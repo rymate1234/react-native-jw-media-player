@@ -9,14 +9,42 @@
 
 @implementation RNJWPlayerViewController
 
+-(void)setDelegates
+{
+    self.delegate = self;
+    self.playerView.delegate = self;
+    self.player.delegate = self;
+    self.player.playbackStateDelegate = self;
+    self.player.adDelegate = self;
+    self.player.avDelegate = self;
+    self.player.contentKeyDataSource = self;
+}
+
+-(void)removeDelegates
+{
+    self.delegate = nil;
+    self.playerView.delegate = nil;
+    self.player.delegate = nil;
+    self.player.playbackStateDelegate = nil;
+    self.player.adDelegate = nil;
+    self.player.avDelegate = nil;
+    self.player.contentKeyDataSource = nil;
+}
+
 #pragma mark - JWPlayer Delegate
 
 - (void)jwplayerIsReady:(id<JWPlayer>)player
 {
     [super jwplayerIsReady:player];
     
+    _parentView.settingConfig = NO;
+    
     if (_parentView.onPlayerReady) {
         _parentView.onPlayerReady(@{});
+    }
+    
+    if (_parentView.pendingConfig && _parentView.currentConfig) {
+        [_parentView setConfig:_parentView.currentConfig];
     }
 }
 
