@@ -637,6 +637,8 @@
     
     _playerViewController = [RNJWPlayerViewController new];
     _playerViewController.parentView = self;
+
+    [_playerViewController setDelegates];
     
     id interfaceBehavior = config[@"interfaceBehavior"];
     if ((interfaceBehavior != nil) && (interfaceBehavior != (id)[NSNull null])) {
@@ -720,6 +722,7 @@
         [_playerViewController.view removeFromSuperview];
         [_playerViewController removeFromParentViewController];
         [_playerViewController willMoveToParentViewController:nil];
+        [_playerViewController removeDelegates];
         _playerViewController = nil;
     }
 }
