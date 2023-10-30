@@ -9,8 +9,10 @@
 
 @implementation RNJWPlayerViewController
 
--(void)setDelegates
+- (void)viewDidLoad 
 {
+    [super viewDidLoad];
+
     self.delegate = self;
     self.playerView.delegate = self;
     self.player.delegate = self;

@@ -637,8 +637,6 @@
     
     _playerViewController = [RNJWPlayerViewController new];
     _playerViewController.parentView = self;
-
-    [_playerViewController setDelegates];
     
     id interfaceBehavior = config[@"interfaceBehavior"];
     if ((interfaceBehavior != nil) && (interfaceBehavior != (id)[NSNull null])) {
